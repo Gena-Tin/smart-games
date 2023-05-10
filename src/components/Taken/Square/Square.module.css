@@ -1,0 +1,15 @@
+.containerStyle {
+  margin: auto;
+  position: relative;
+  width: 213px;
+  height: 213px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+.buttonStyle {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}

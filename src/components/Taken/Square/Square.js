@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Cell from "./Cell/Cell";
+import css from "./Square.module.css";
 
 function Square({ array }) {
   console.log(array);
@@ -49,62 +51,14 @@ function Square({ array }) {
     setElements(shuffledElements);
   };
 
-  const renderElements = () => {
-    return elements.map((value, index) => {
-      const row = Math.floor(index / 4);
-      const col = index % 4;
-
-      const elementStyle = {
-        position: "absolute",
-        top: `${1 + row * 53}px`,
-        left: `${1 + col * 53}px`,
-        width: "50px",
-        height: "50px",
-        border: "1px solid black",
-        borderRadius: "8px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: "pointer",
-        background: value === 0 ? "transparent" : "rgb(255, 238, 107)",
-        borderStyle: value === 0 ? "none" : "solid",
-        color: value === 0 ? "transparent" : undefined,
-      };
-
-      return (
-        <div
-          key={index}
-          style={elementStyle}
-          onClick={() => handleCellClick(index)}
-        >
-          {value}
-        </div>
-      );
-    });
-  };
-
-  const containerStyle = {
-    margin: "auto",
-    position: "relative",
-    width: "213px",
-    height: "213px",
-    border: "1px solid black",
-    borderRadius: "8px",
-  };
-
-  const buttonStyle = {
-    display: "block",
-    margin: "auto",
-    marginTop: "10px",
-    padding: "10px",
-    borderRadius: "8px",
-  };
-
   return (
     <>
-      <div style={containerStyle}>{renderElements()}</div>
-      <button style={buttonStyle} onClick={shuffleElements}>
-        Перемешать
+      <div className={css.containerStyle}>
+        <Cell handleCellClick={handleCellClick} elements={elements} />
+      </div>
+
+      <button className={css.buttonStyle} onClick={shuffleElements}>
+        Mix
       </button>
     </>
   );
