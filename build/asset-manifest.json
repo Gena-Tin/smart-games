@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/smart-games/static/css/main.8caf717c.css",
+    "main.js": "/smart-games/static/js/main.23cec21c.js",
+    "index.html": "/smart-games/index.html",
+    "main.8caf717c.css.map": "/smart-games/static/css/main.8caf717c.css.map",
+    "main.23cec21c.js.map": "/smart-games/static/js/main.23cec21c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8caf717c.css",
+    "static/js/main.23cec21c.js"
+  ]
+}
