@@ -6,7 +6,7 @@ import css from "./Square.module.css";
 
 function Square({ array }) {
   const [elements, setElements] = useState(array);
-
+  const [score, setScore] = useState(0);
   const [isWin, setIsWin] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
 
@@ -82,11 +82,13 @@ function Square({ array }) {
       firstRender === false
     ) {
       setIsWin(true);
+      setScore((prev) => prev + 1);
     }
   }, [elements, array, firstRender]);
 
   return (
     <>
+      <p className={css.scoreStyle}>Your score {score}</p>
       <div className={css.containerStyle}>
         <Cell handleCellClick={handleCellClick} elements={elements} />
         <Overlay visible={isWin} onClick={handleOverlayClick} />
