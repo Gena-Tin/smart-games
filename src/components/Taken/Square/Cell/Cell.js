@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./Cell.module.css";
 
 function Cell({ handleCellClick, elements }) {

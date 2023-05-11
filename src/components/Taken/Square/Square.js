@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cell from "./Cell/Cell";
+import Overlay from "../Overlay/Overlay";
+import Popup from "../Popup/Popup";
 import css from "./Square.module.css";
 
 function Square({ array }) {
-  console.log(array);
   const [elements, setElements] = useState(array);
 
+  const [isWin, setIsWin] = useState(false);
+  const [firstRender, setFirstRender] = useState(true);
+
   const handleCellClick = (index) => {
+    setFirstRender(false);
+    if (isWin) return;
+
     const clickedValue = elements[index];
 
     if (clickedValue !== 0) {
@@ -49,14 +56,42 @@ function Square({ array }) {
       ];
     }
     setElements(shuffledElements);
+    setIsWin(false);
   };
+
+  const handleOverlayClick = () => {
+    setIsWin(false);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setIsWin(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      JSON.stringify(elements) === JSON.stringify(array) &&
+      firstRender === false
+    ) {
+      setIsWin(true);
+    }
+  }, [elements, array, firstRender]);
 
   return (
     <>
       <div className={css.containerStyle}>
         <Cell handleCellClick={handleCellClick} elements={elements} />
+        <Overlay visible={isWin} onClick={handleOverlayClick} />
+        <Popup visible={isWin} onClick={handleOverlayClick} />
       </div>
-
       <button className={css.buttonStyle} onClick={shuffleElements}>
         Mix
       </button>

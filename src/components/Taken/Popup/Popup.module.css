@@ -1,0 +1,11 @@
+.popupStyle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+.imgStyle {
+  width: 200px;
+  height: 200px;
+}
